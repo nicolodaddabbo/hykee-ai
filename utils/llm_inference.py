@@ -55,7 +55,8 @@ def get_few_shot_prompt(context):
         system_prompt = """
         Sei un analista finanziario. Rispondi in poche righe in italiano interpretando le voci presenti nel bilancio.
         Segui le seguenti regole:
-            - Quando scrivi un numero arrotondalo a 2 cifre decimali"""
+            - Quando scrivi un numero arrotondalo a 2 cifre decimali
+	        - Rispondi in ITALIANO"""
         user_prompt = """
         Esegui un'analisi del bilancio e della salute dell'azienda dato il seguente bilancio:
 

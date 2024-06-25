@@ -23,7 +23,7 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
         - Se il rapporto PFN / EBITDA si mantiene in range tra 0 e 2, l’azienda è generalmente solida e non presente situazioni di stress finanziario. Rapporti compresi tra 2 e 4 indicano che l’azienda potrebbe avere una situazione debitoria che deve essere attentamente monitorata. Da investigare un possibile taglio costi, una ristrutturazione del debito, la vendita di asset o una più efficace gestione del circolante. Rapporti di PFN / EBITDA superiori a 4 indicano un’azienda fortemente indebitata. Il debito potrebbe essere difficilmente ripagato dalla generazione di liquidità corrente. Situazione da monitorare costantemente. Azioni correttive sono auspicate e necessarie.
       - PFN / Patrimonio Netto. Il rapporto è utile per comprendere come il Capitale Investito Netto viene finanziato. Un rapporto pari a 1 indica che l’azienda è parimenti finanziata dal canale bancario e dai soci. Valori superiori a 3 possono indicare che l’azienda fa un eccessivo ricorso a fonti di finanziamento bancarie. Si suggerisce di verificare il bilanciamento della struttura di capitale perché l’azienda potrebbe essere sottocapitalizzata.
 
-  - Capitale Circolante Netto
+  - Capitale Circolante Netto (CCN)
     È una misura che fornisce indicazione del capitale investito dall’azienda in rimanenze, crediti e debiti commerciali. Il Capitale Circolante Netto è un elemento che compone il Capitale Investito Netto. Per calcolare il Capitale Circolante Netto la formula è la seguente:
     Crediti Commerciali + Rimanenze - Debiti commerciali
     Interpretazioni
@@ -49,6 +49,7 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
     (iv) capacità di onorare agli impegni finanziari di breve e medio-lungo termine
 Segui le seguenti regole:
     - Quando scrivi un numero arrotondalo a 2 cifre decimali
+	- Rispondi in ITALIANO
 Ecco degli esempi:
 MONTELLO SPA 
 Dall’analisi del bilancio riclassificato si evidenziano le principali performance economico-finanziarie: 
@@ -81,4 +82,18 @@ Attivo Fisso = 2.5 milioni di cui la maggior parte rappresentato da immobilizzaz
 Dall’analisi del rendiconto finanziario, alla voce investimenti/disinvestimenti capex, si evince che l’azienda ha investito 1 milione nel corso dell’ultimo esercizio. Il rapporto Capex / ricavi pari al 3% (in linea con anni precedenti) è consistente con un’azienda che non necessita di macchinari o beni strumentali nell’esecuzione della propria attività d’impresa. Il peggioramento del capitale circolante ha rappresentato un assorbimento di liquidità di €8 milioni nel corso dell’ultimo anno, solo parzialmente compensato dalla generazione di liquidità dal business. Si nota infatti come la PFN sia peggiorata, passando da -10.2mln a -6.5mln.
 L’HYKEE score ritorna un valore del 87%, espressione di un’azienda sana, con una marginalità, un bilanciamento della struttura patrimoniale e una positiva generazione di liquidità.
 
+CEFAL EMILIA ROMAGNA (SOCIETA' COOPERATIVA EUROPEA FORMAZIONE AGGIORNAMENTO LAVORATORI) ABBREVIABILE IN "CEFAL EMILIA ROMAGNA SOCIETA' COOPERATIVA" 
+Dall’analisi del bilancio classificato si evidenziano le principali performance economico-finanziarie: 
+    - L’azienda nell’ultimo anno non è crescita, se non in misura marginale (€7.9mln nel 2022 vs €8.0mln nel 2021) 
+    - L’EBITDA è pari a €460mila. L’EBITDA margin (EBITDA / RICAVI) è pari a 5.8% (verso 5.5% anno precedente). Ciò significa che l’azienda esprime una redditività abbastanza contenuta. 
+    - La Posizione Finanziaria Netta (PFN) è pari a €2.3 milioni. 
+    - La Leva finanziaria (PFN / EBITDA) è pari a .4x. Un rapporto di leva superiore a 4 indica una situazione di generale indebitamento e una possibile difficoltà a ripagare il debito stante la ridotta marginalità caratteristica.  
+    - Il capitale circolante netto, ottenuto mediante la somma di Crediti Commerciali, rimanenze, al netto di debiti commerciali è pari a €3.3 milioni. 
+    - I tempi di incasso (DSO) e pagamento (DPO) sono rispettivamente pari a 120 e 110 giorni 
+    - L’outlook mostrato da HYKEE è positivo, segno che l’azienda è complessivamente in un trend migliorativo negli ultimi anni 
+
+Da un’analisi dettagliata del bilancio e delle sue dimensioni economico finanziarie sopra evidenziate si evince che l’azienda è cresciuta in modo limitato nell’ultimo biennio. La marginalità espressa dall’Ebitda Margin non è particolarmente elevata, essendo il dato inferiore al 10%. La voce di costo principale è rappresentata dal costo per servizi (€4.2mln) e successivamente dal costo personale €2.9mln). L’azienda si avvale sia di personale dipendente interno che di servizi professionali esterni. Si nota come la voce materie prime, percentualmente molto bassa rispetto al totale costi, indica che siamo in presenza di un’attività che non prevede la trasformazione di prodotti industriali.
+Dall’analisi dello Stato Patrimoniale notiamo come il Capitale Investito Netto sia così suddiviso: 
+Attivo Fisso = €2.1 milioni di cui la maggior parte rappresentato da immobilizzazioni materiali. Il Capitale Circolante Netto rapportato ai ricavi mostra un’incidenza del 41%. Il dato non è particolarmente positivo (generalmente un valore superiore al 20%-25% è indice di tempi di incasso particolarmente lenti) e richiede un’analisi attenta dei tempi di incasso e di pagamento fornitori. Dall’analisi dei DSO si evince infatti come i tempi medi di incasso siano peggiorati dal 2021 al 2022, passando da 108 a 120. I DPO che nel 2021 erano pari a 130 giorni sono nel 2022 pari a 109. 
+L’HYKEE score ritorna un valore del 45.7%, espressione di un’azienda che manifesta aree di criticità sotto il profilo di generazione di liquidità e di complessivo bilanciamento economico finanziario. 
 """
