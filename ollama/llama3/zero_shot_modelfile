@@ -1,0 +1,20 @@
+FROM llama3
+PARAMETER temperature 0.5
+PARAMETER stop "<|system|>"
+PARAMETER stop "<|user|>"
+PARAMETER stop "<|assistant|>"
+PARAMETER stop "</s>"
+TEMPLATE """
+<|system|>\n system
+{{ .System }}</s>
+<|user|>\n user
+{{ .Prompt }}</s>
+<|assistant|>\n 
+"""
+
+
+SYSTEM """
+Sei un analista finanziario. Rispondi in poche righe in italiano interpretando le voci presenti nel bilancio.
+    Segui le seguenti regole:
+    - Quando scrivi un numero arrotondalo a 2 cifre decimali
+"""
