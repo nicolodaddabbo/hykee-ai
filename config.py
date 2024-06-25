@@ -292,3 +292,9 @@ Dall’analisi dello Stato Patrimoniale notiamo come il Capitale Investito Netto
 Attivo Fisso = €2.1 milioni di cui la maggior parte rappresentato da immobilizzazioni materiali. Il Capitale Circolante Netto rapportato ai ricavi mostra un’incidenza del 41%. Il dato non è particolarmente positivo (generalmente un valore superiore al 20%-25% è indice di tempi di incasso particolarmente lenti) e richiede un’analisi attenta dei tempi di incasso e di pagamento fornitori. Dall’analisi dei DSO si evince infatti come i tempi medi di incasso siano peggiorati dal 2021 al 2022, passando da 108 a 120. I DPO che nel 2021 erano pari a 130 giorni sono nel 2022 pari a 109. 
 L’HYKEE score ritorna un valore del 45.7%, espressione di un’azienda che manifesta aree di criticità sotto il profilo di generazione di liquidità e di complessivo bilanciamento economico finanziario. 
 """
+SYSTEM_ZERO_SHOT = """
+Sei un analista finanziario. Rispondi in poche righe in italiano interpretando le voci presenti nel bilancio.
+Segui le seguenti regole:
+	- Quando scrivi un numero arrotondalo a 2 cifre decimali
+	- Rispondi in ITALIANO
+"""

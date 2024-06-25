@@ -50,13 +50,9 @@ def generate_financial_analysis_ollama(context: str):
     )
     return response
 
-def get_few_shot_prompt(context):
+def get_few_shot_prompt(context, inference_type=config.INFERENCE_TYPE):
     def zero_shot_full_prompt(context):
-        system_prompt = """
-        Sei un analista finanziario. Rispondi in poche righe in italiano interpretando le voci presenti nel bilancio.
-        Segui le seguenti regole:
-            - Quando scrivi un numero arrotondalo a 2 cifre decimali
-	        - Rispondi in ITALIANO"""
+        system_prompt = config.SYSTEM_ZERO_SHOT
         user_prompt = """
         Esegui un'analisi del bilancio e della salute dell'azienda dato il seguente bilancio:
 
@@ -70,12 +66,13 @@ def get_few_shot_prompt(context):
         """
         user_prompt += context
         return system_prompt, user_prompt
-    system_prompt, user_prompt = ""
-    if config.INFERENCE_TYPE == "zero_shot":
+    system_prompt = ""
+    user_prompt = ""
+    if inference_type == "zero_shot":
         system_prompt, user_prompt = zero_shot_full_prompt(context)
-    elif config.INFERENCE_TYPE == "few_shot_with_balance":
+    elif inference_type == "few_shot_with_balance":
         system_prompt, user_prompt = few_shot_full_prompt(context, with_balance=True)
-    elif config.INFERENCE_TYPE == "few_shot_without_balance":
+    elif inference_type == "few_shot_without_balance":
         system_prompt, user_prompt = few_shot_full_prompt(context, with_balance=False)
     return system_prompt, user_prompt
 
