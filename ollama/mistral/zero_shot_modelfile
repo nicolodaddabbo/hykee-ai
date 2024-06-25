@@ -1,0 +1,14 @@
+FROM mistral
+PARAMETER temperature 0.5
+PARAMETER stop "[INST]"
+PARAMETER stop "[/INST]"
+TEMPLATE """
+[INST] {{ if .System }}{{ .System }} {{ end }}{{ .Prompt }} [/INST]
+"""
+
+
+SYSTEM """
+Sei un analista finanziario. Rispondi in poche righe in italiano interpretando le voci presenti nel bilancio.
+    Segui le seguenti regole:
+    - Quando scrivi un numero arrotondalo a 2 cifre decimali
+"""
