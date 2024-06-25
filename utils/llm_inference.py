@@ -2,6 +2,8 @@ import ollama
 import config
 import os
 
+ACCEPTED_MODELS = ["llama3", "mistral", "gpt-3.5-turbo", "claude-3-haiku"]
+COMMERCIAL_MODELS = ["gpt-3.5-turbo", "claude-3-haiku"]
 model = config.MODEL + "_" + config.INFERENCE_TYPE + ":latest"
 
 def load_model(recreate=False):
@@ -11,6 +13,12 @@ def load_model(recreate=False):
     Args:
         recreate (bool, optional): Whether to recreate the model if it already exists. Defaults to True.
     """
+    if config.MODEL not in ACCEPTED_MODELS:
+        raise ValueError(f"Model {config.MODEL} not supported. Accepted models are {ACCEPTED_MODELS}.")
+    if config.MODEL in COMMERCIAL_MODELS:
+        print(f"Model {config.MODEL} is a commercial model. Please make sure you have the necessary permissions to use it.")
+        return
+    
     existing_models = ollama.list()
     model_exists = any(existing_model["name"] == model for existing_model in existing_models['models'])
     if model_exists and not recreate:
@@ -37,6 +45,8 @@ def generate_financial_analysis(context: dict):
     Returns:
         dict: The generated financial analysis.
     """
+    if config.MODEL in COMMERCIAL_MODELS:
+        return {"message": f"Model {config.MODEL} is a commercial model. Please make sure you have the necessary permissions to use it."}
     response = ollama.generate(
         model=model,
         prompt="Esegui un'analisi del bilancio e della salute dell'azienda dato il seguente bilancio:\n" + context
