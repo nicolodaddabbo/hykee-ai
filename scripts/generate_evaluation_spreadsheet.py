@@ -10,6 +10,7 @@ from utils import data_management as dm
 from utils import llm_inference as li
 import config
 import json
+import ast
 
 HYKEE_API_URL = "https://staging.hykee.tech"
 
@@ -21,84 +22,113 @@ def batch_format_balances(balances):
     prompts.append(dm.balance_json_to_text(prompt))
   return prompts
 
-current_dir = os.path.dirname(__file__)
-file_path = os.path.join(current_dir, "../files/company_vats.txt")
-with open(file_path) as f:
-    vats = f.read()
+def get_balances():
+  current_dir = os.path.dirname(__file__)
+  file_path = os.path.join(current_dir, "../files/evaluation_balances.txt")
+  if os.path.exists(file_path):
+    input_file = 'files/evaluation_balances.txt'
+    with open(input_file, 'r') as infile:
+        data = infile.read()
+    return ast.literal_eval(data)
 
-balances = []
-# for vat in vats.split("\n"):
-#   print(f"Request for {vat} balance sheet...")
-#   response = requests.get(f"{HYKEE_API_URL}/api/custom/generate-json-request?vatNumber={vat}")
-#   if response.status_code != 400:
-#     balances.append(response)
+  current_dir = os.path.dirname(__file__)
+  file_path = os.path.join(current_dir, "../files/company_vats.txt")
+  with open(file_path) as f:
+      vats = f.read()
 
-# INIZIO TMP
-current_dir = os.path.dirname(__file__)
-file_path = os.path.join(current_dir, "../files/example_request_with_score.json")
-with open(file_path) as f:
-  balances.append(json.load(f))
-balances.append(balances[0])
-# FINE TMP
-# print(balances)
-# balances = [balance.json() for balance in balances]
-# balances = [balance for balance in balances if not "status" in balance.keys()]
-formatted_balances = batch_format_balances(balances)
+  balances = []
+  for vat in vats.split("\n"):
+    print(f"Request for {vat} balance sheet...")
+    response = requests.get(f"{HYKEE_API_URL}/api/custom/generate-json-request?vatNumber={vat}")
+    if response.status_code != 400:
+      balances.append(response)
 
-print(li.get_few_shot_prompt(formatted_balances[0], "zero_shot"))
+  # INIZIO TMP
+  # current_dir = os.path.dirname(__file__)
+  # file_path = os.path.join(current_dir, "../files/example_request_with_score.json")
+  # with open(file_path) as f:
+  #   balances.append(json.load(f))
+  # balances.append(balances[0])
+  # FINE TMP
+  # print(balances)
+  balances = [balance.json() for balance in balances]
+  balances = [balance for balance in balances if not "status" in balance.keys()]
+  formatted_balances = batch_format_balances(balances)
 
-def batch_generate(llm, formatted_balances, llm_name):
+  current_dir = os.path.dirname(__file__)
+  file_path = os.path.join(current_dir, "../files/evaluation_balances.txt")
+  with open(file_path, "w") as f:
+    json.dump(formatted_balances, f)
+
+
+def batch_generate(llm, formatted_balances, llm_name, csv_name="dataset.csv"):
   dataset = []
   id = 0
   config.MODEL = llm
-  
-  for balance in formatted_balances:
-    print(f"Generating financial analysis for balance {id} with model {config.MODEL}...")
-    config.INFERENCE_TYPE = "zero_shot"
-    config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-    zero_shot_answer = li.generate_financial_analysis(balance)
-    print(f"Zero-shot answer: {zero_shot_answer}")
+  with open(csv_name, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["id", "llm", "method_name", "prompt", "context", "answer", "human-score", "llm-score"])
     
-    config.INFERENCE_TYPE = "few_shot_without_balance"
-    config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-    few_shot_answer_without_balance = li.generate_financial_analysis(balance)
-    print(f"Few-shot without balance answer: {few_shot_answer_without_balance}")
-    
-    config.INFERENCE_TYPE = "few_shot_with_balance"
-    config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-    few_shot_answer_with_balance = li.generate_financial_analysis(balance)
-    print(f"Few-shot with balance answer: {few_shot_answer_with_balance}")
+    for balance in formatted_balances:
+      print(f"Generating financial analysis for balance {id} with model {config.MODEL}...")
+      config.INFERENCE_TYPE = "zero_shot"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      zero_shot_answer = li.generate_financial_analysis(balance)["response"]
+      print(f"Zero-shot answer: {zero_shot_answer}")
+      
+      config.INFERENCE_TYPE = "few_shot_without_balance"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      few_shot_answer_without_balance = li.generate_financial_analysis(balance)["response"]
+      print(f"Few-shot without balance answer: {few_shot_answer_without_balance}")
+      
+      config.INFERENCE_TYPE = "few_shot_with_balance"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      few_shot_answer_with_balance = li.generate_financial_analysis(balance)["response"]
+      print(f"Few-shot with balance answer: {few_shot_answer_with_balance}")
 
-    dataset.append({
-        "id": id,
-        "llm": llm_name,
-        "methods": [
-            {
-              "name": "zero-shot",
-              "prompt": li.get_few_shot_prompt(balance, "zero_shot"),
-              "context": balance,
-              "answer": zero_shot_answer
-            },
-            {
-              "name": "few-shot-without-balance",
-              "prompt": li.get_few_shot_prompt(balance, "few_shot_without_balance"),
-              "context": balance,
-              "answer": few_shot_answer_without_balance
-            },
-            {
-              "name": "few-shot-with-balance",
-              "prompt": li.get_few_shot_prompt(balance, "few_shot_with_balance"),
-              "context": balance,
-              "answer": few_shot_answer_with_balance
-            }
-        ],
-        "human-score": "",
-        "llm-score": ""
-    })
-    id += 1
+      data = {
+          "id": id,
+          "llm": llm_name,
+          "methods": [
+              {
+                "name": "zero-shot",
+                "prompt": li.get_few_shot_prompt(balance, "zero_shot"),
+                "context": balance,
+                "answer": zero_shot_answer
+              },
+              {
+                "name": "few-shot-without-balance",
+                "prompt": li.get_few_shot_prompt(balance, "few_shot_without_balance"),
+                "context": balance,
+                "answer": few_shot_answer_without_balance
+              },
+              {
+                "name": "few-shot-with-balance",
+                "prompt": li.get_few_shot_prompt(balance, "few_shot_with_balance"),
+                "context": balance,
+                "answer": few_shot_answer_with_balance
+              }
+          ],
+          "human-score": "",
+          "llm-score": ""
+      }
+      dataset.append(data)
+      for method in data["methods"]:
+        writer.writerow([
+            data["id"],
+            data["llm"],
+            method["name"],
+            method["prompt"],
+            method["context"],
+            method["answer"],
+            data["human-score"],
+            data["llm-score"]
+        ])
+      id += 1
   return dataset
-
-llama_dataset = batch_generate("llama3", formatted_balances, "Meta-Llama-3-8B")
 
 def generate_csv(dataset, csv_name="dataset.csv"):
   with open(csv_name, mode="w", newline="") as file:
@@ -120,4 +150,6 @@ def generate_csv(dataset, csv_name="dataset.csv"):
                 data["llm-score"]
             ])
             
-generate_csv(llama_dataset, "llama_dataset.csv")
+formatted_balances = get_balances()
+llama_dataset = batch_generate("llama3", formatted_balances[:100], "Meta-Llama-3-8B", "llama_dataset.csv")
+#generate_csv(llama_dataset, "llama_dataset.csv")
