@@ -12,6 +12,29 @@ import config
 import json
 import ast
 
+import mysql.connector
+from mysql.connector import Error
+
+def insert_data(connection, cursor, data):
+    try:
+        # Prepare the SQL insert query
+        insert_query = """
+        INSERT INTO hykee_ai_evaluation (id, llm, method_name, prompt, context, answer)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        
+        # Execute the query with the provided data
+        cursor.execute(insert_query, data)
+        
+        # Commit the transaction
+        connection.commit()
+        
+        print("Data inserted successfully")
+
+    except mysql.connector.Error as error:
+        print(f"Failed to insert data into MySQL table: {error}")
+        connection.rollback()
+
 HYKEE_API_URL = "https://staging.hykee.tech"
 
 def batch_format_balances(balances):
@@ -62,7 +85,6 @@ def get_balances():
 
 
 def batch_generate(llm, formatted_balances, llm_name, csv_name="dataset.csv"):
-  dataset = []
   id = 0
   config.MODEL = llm
   with open(csv_name, mode="w", newline="") as file:
@@ -115,7 +137,7 @@ def batch_generate(llm, formatted_balances, llm_name, csv_name="dataset.csv"):
           "human-score": "",
           "llm-score": ""
       }
-      dataset.append(data)
+      
       for method in data["methods"]:
         writer.writerow([
             data["id"],
@@ -128,7 +150,69 @@ def batch_generate(llm, formatted_balances, llm_name, csv_name="dataset.csv"):
             data["llm-score"]
         ])
       id += 1
-  return dataset
+
+def batch_generate_db(llm, formatted_balances, llm_name, connection, cursor, starting_id=0):
+  id = starting_id
+  config.MODEL = llm
+  for balance in formatted_balances:
+    try:
+      print(f"Generating financial analysis for balance {id} with model {config.MODEL}...")
+      config.INFERENCE_TYPE = "zero_shot"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      zero_shot_answer = li.generate_financial_analysis(balance)["response"]
+      print(f"Zero-shot answer: {zero_shot_answer}")
+      
+      config.INFERENCE_TYPE = "few_shot_without_balance"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      few_shot_answer_without_balance = li.generate_financial_analysis(balance)["response"]
+      print(f"Few-shot without balance answer: {few_shot_answer_without_balance}")
+      
+      config.INFERENCE_TYPE = "few_shot_with_balance"
+      print(f"Generating {config.INFERENCE_TYPE} answer...")
+      config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
+      few_shot_answer_with_balance = li.generate_financial_analysis(balance)["response"]
+      print(f"Few-shot with balance answer: {few_shot_answer_with_balance}")
+
+      data = {
+          "id": id,
+          "llm": llm_name,
+          "methods": [
+              {
+                "name": "zero-shot",
+                "prompt": li.get_few_shot_prompt(balance, "zero_shot"),
+                "context": balance,
+                "answer": zero_shot_answer
+              },
+              {
+                "name": "few-shot-without-balance",
+                "prompt": li.get_few_shot_prompt(balance, "few_shot_without_balance"),
+                "context": balance,
+                "answer": few_shot_answer_without_balance
+              },
+              {
+                "name": "few-shot-with-balance",
+                "prompt": li.get_few_shot_prompt(balance, "few_shot_with_balance"),
+                "context": balance,
+                "answer": few_shot_answer_with_balance
+              }
+          ]
+      }
+      
+      for method in data["methods"]:
+        insert_data(connection, cursor, [
+            data["id"],
+            data["llm"],
+            method["name"],
+            "".join(method["prompt"]),
+            method["context"],
+            method["answer"]
+        ])
+      id += 1
+    except Exception as e:
+      print(f"An error occurred: {e}")
+      continue
 
 def generate_csv(dataset, csv_name="dataset.csv"):
   with open(csv_name, mode="w", newline="") as file:
@@ -150,6 +234,34 @@ def generate_csv(dataset, csv_name="dataset.csv"):
                 data["llm-score"]
             ])
             
-formatted_balances = get_balances()
-llama_dataset = batch_generate("llama3", formatted_balances[:100], "Meta-Llama-3-8B", "llama_dataset.csv")
-#generate_csv(llama_dataset, "llama_dataset.csv")
+def main():
+    try:
+        formatted_balances = get_balances()
+
+        # Establish a database connection
+        connection = mysql.connector.connect(
+            host='localhost',  # Update with your host if needed
+            database='hykee_ai',  # Update with your database name
+            user='root',  # Update with your username
+            password='password'  # Update with your password
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+            batch_generate_db("command-r", formatted_balances[2:37], "Command-R-35B", connection, cursor, 2)
+            
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+    
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+if __name__ == "__main__":
+    main()            
+
+# formatted_balances = get_balances()
+# batch_generate("llama3", formatted_balances[6:100], "Meta-Llama-3-8B", "llama_dataset.csv")
+# generate_csv(llama_dataset, "llama_dataset.csv")

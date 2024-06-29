@@ -2,7 +2,7 @@ import ollama
 import config
 import os
 
-ACCEPTED_MODELS = ["llama3", "mistral", "gpt-3.5-turbo", "claude-3-haiku"]
+ACCEPTED_MODELS = ["llama3", "command-r", "gpt-3.5-turbo", "claude-3-haiku"]
 COMMERCIAL_MODELS = ["gpt-3.5-turbo", "claude-3-haiku"]
 model = config.MODEL + "_" + config.INFERENCE_TYPE + ":latest"
 client_openai = None
