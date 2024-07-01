@@ -1,8 +1,8 @@
-MODEL = "command-r"
-INFERENCE_TYPE = "few_shot_without_balance" # "zero_shot", "few_shot_with_balance" or "few_shot_without_balance"
+MODEL = "llama3"
+INFERENCE_TYPE = "few_shot_with_balance" # "zero_shot", "few_shot_with_balance" or "few_shot_without_balance"
 MODELFILE = f"ollama/{MODEL}/{INFERENCE_TYPE}_modelfile"
-OPENAI_API_KEY = "sk-proj-nZ1PcAgXDaXa9nP2qmPrT3BlbkFJxggstpOMcDxrMS8CBPYh"
-ANTHROPIC_API_KEY = "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"
+OPENAI_API_KEY = "sk-proj-GakwxTJNiTBDhZVS3jmWT3BlbkFJVkib4ycZd0lW65mLkoA5"
+ANTHROPIC_API_KEY = "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"
 SYSTEM_FEW_SHOT_WITHOUT_BALANCE = """
 Sei un analista finanziario. Rispondi come negli esempi in italiano.
 Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:

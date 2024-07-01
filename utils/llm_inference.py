@@ -2,8 +2,8 @@ import ollama
 import config
 import os
 
-ACCEPTED_MODELS = ["llama3", "command-r", "gpt-3.5-turbo", "claude-3-haiku"]
-COMMERCIAL_MODELS = ["gpt-3.5-turbo", "claude-3-haiku"]
+ACCEPTED_MODELS = ["llama3", "command-r", "gpt-3.5-turbo-0125", "claude-3-haiku-20240307"]
+COMMERCIAL_MODELS = ["gpt-3.5-turbo-0125", "claude-3-haiku-20240307"]
 model = config.MODEL + "_" + config.INFERENCE_TYPE + ":latest"
 client_openai = None
 client_anthropic = None
@@ -19,10 +19,10 @@ def load_model(recreate=False):
         raise ValueError(f"Model {config.MODEL} not supported. Accepted models are {ACCEPTED_MODELS}.")
     if config.MODEL in COMMERCIAL_MODELS:
         print(f"Model {config.MODEL} is a commercial model. Please make sure you have the necessary permissions to use it.")
-        if config.MODEL == "gpt-3.5-turbo":
+        if config.MODEL == "gpt-3.5-turbo-0125":
             from openai import OpenAI
             client_openai = OpenAI(api_key=config.OPENAI_API_KEY)
-        elif config.MODEL == "claude-3-haiku":
+        elif config.MODEL == "claude-3-haiku-20240307":
             import anthropic
             client_anthropic = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
         return
@@ -77,9 +77,13 @@ def get_few_shot_prompt(context, inference_type=config.INFERENCE_TYPE):
     return system_prompt, user_prompt
 
 def generate_financial_analysis_openai(context: str):
+    global client_openai
+    if (client_openai is None):
+        from openai import OpenAI
+        client_openai = OpenAI(api_key=config.OPENAI_API_KEY)
     system_prompt, user_prompt = get_few_shot_prompt(context)
     output = client_openai.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-0125",
         messages=[
             {
                 "role": "system", "content": system_prompt
@@ -89,12 +93,16 @@ def generate_financial_analysis_openai(context: str):
             }
         ]
     )
-    return output.choices[0].messages
+    return output.choices[0].message.content
 
 def generate_financial_analysis_anthropic(context: str):
+    global client_anthropic
+    if (client_anthropic is None):
+        import anthropic
+        client_anthropic = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
     system_prompt, user_prompt = get_few_shot_prompt(context)
     message = client_anthropic.messages.create(
-        model="claude-3-haiku-20240229",
+        model="claude-3-haiku-20240307",
         max_tokens=2000,
         temperature=0.0,
         system=system_prompt,
@@ -102,12 +110,12 @@ def generate_financial_analysis_anthropic(context: str):
             {"role": "user", "content": user_prompt}
         ]
     )
-    return message.content
+    return message.content[0].text
 
 def generate_financial_analysis_commercial(context: str):
-    if config.MODEL == "gpt-3.5-turbo":
+    if config.MODEL == "gpt-3.5-turbo-0125":
         return generate_financial_analysis_openai(context)
-    elif config.MODEL == "claude-3-haiku":
+    elif config.MODEL == "claude-3-haiku-20240307":
         return generate_financial_analysis_anthropic(context)
     else:
         return
