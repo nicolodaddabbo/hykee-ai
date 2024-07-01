@@ -160,19 +160,25 @@ def batch_generate_db(llm, formatted_balances, llm_name, connection, cursor, sta
       config.INFERENCE_TYPE = "zero_shot"
       print(f"Generating {config.INFERENCE_TYPE} answer...")
       config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-      zero_shot_answer = li.generate_financial_analysis(balance)["response"]
+      zero_shot_answer = li.generate_financial_analysis(balance)
+      if (not isinstance(zero_shot_answer, str)) and "response" in zero_shot_answer.keys():
+        zero_shot_answer = zero_shot_answer["response"]
       print(f"Zero-shot answer: {zero_shot_answer}")
       
       config.INFERENCE_TYPE = "few_shot_without_balance"
       print(f"Generating {config.INFERENCE_TYPE} answer...")
       config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-      few_shot_answer_without_balance = li.generate_financial_analysis(balance)["response"]
+      few_shot_answer_without_balance = li.generate_financial_analysis(balance)
+      if (not isinstance(zero_shot_answer, str)) and "response" in few_shot_answer_without_balance.keys():
+        few_shot_answer_without_balance = few_shot_answer_without_balance["response"]
       print(f"Few-shot without balance answer: {few_shot_answer_without_balance}")
       
       config.INFERENCE_TYPE = "few_shot_with_balance"
       print(f"Generating {config.INFERENCE_TYPE} answer...")
       config.MODELFILE = f"ollama/{config.MODEL}/{config.INFERENCE_TYPE}_modelfile"
-      few_shot_answer_with_balance = li.generate_financial_analysis(balance)["response"]
+      few_shot_answer_with_balance = li.generate_financial_analysis(balance)
+      if (not isinstance(zero_shot_answer, str)) and "response" in few_shot_answer_with_balance.keys():
+        few_shot_answer_with_balance = few_shot_answer_with_balance["response"]
       print(f"Few-shot with balance answer: {few_shot_answer_with_balance}")
 
       data = {
@@ -248,7 +254,7 @@ def main():
 
         if connection.is_connected():
             cursor = connection.cursor()
-            batch_generate_db("command-r", formatted_balances[2:37], "Command-R-35B", connection, cursor, 2)
+            batch_generate_db("claude-3-haiku-20240307", formatted_balances[:37], "claude-3-haiku-20240307", connection, cursor, 0)
             
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")
