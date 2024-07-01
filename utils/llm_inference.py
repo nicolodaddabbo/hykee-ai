@@ -132,7 +132,9 @@ def generate_financial_analysis(context: str):
         dict: The generated financial analysis.
     """
     if config.MODEL in COMMERCIAL_MODELS:
-        return generate_financial_analysis_commercial(context)
+        analysis = generate_financial_analysis_commercial(context)
     else:
-        return generate_financial_analysis_ollama(context)
-    
+        analysis = generate_financial_analysis_ollama(context)
+    if (not isinstance(analysis, str)) and "response" in analysis.keys():
+        analysis = analysis["response"]
+    return analysis

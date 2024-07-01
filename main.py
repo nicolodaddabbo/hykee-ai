@@ -11,6 +11,7 @@ async def root():
 @app.post("/api/generate/financial-analysis")
 async def generate_financial_analysis(data: FARequest):
     context = dm.get_context_from_request(data.model_dump(mode="json"))
+    print(f"Request for generation with context: {context}")
     response = llm_inference.generate_financial_analysis(dm.balance_json_to_text(context))
     return {"message": "AI financial analysis generated successfully!", "data": response}
 

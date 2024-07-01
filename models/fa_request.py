@@ -1,10 +1,58 @@
 from pydantic import BaseModel
 from typing import Optional
-from models.balance import Balance
-from models.company_score import CompanyScore
 
 class FARequest(BaseModel):
     vatNumber: Optional[str] = None
     companyName: Optional[str] = None
-    balance: Optional[Balance] = None
-    score: Optional[CompanyScore] = None
+    revenue: Optional[float] = None
+    production_value: Optional[float] = None
+    raw_materials: Optional[float] = None
+    services: Optional[float] = None
+    personnel: Optional[float] = None
+    other_operating_expenses: Optional[float] = None
+    ebitda: Optional[float] = None
+    ebitda_perc: Optional[float] = None
+    depreciation_and_amortization: Optional[float] = None
+    ebit: Optional[float] = None
+    ebt: Optional[float] = None
+    inventories: Optional[float] = None
+    taxes: Optional[float] = None
+    net_income: Optional[float] = None
+    tangible_assets: Optional[float] = None
+    financial_assets: Optional[float] = None
+    intangible_assets: Optional[float] = None
+    fixed_assets: Optional[float] = None
+    other_current_assets: Optional[float] = None
+    total_assets: Optional[float] = None
+    total_debts_to_social_security_institutions: Optional[float] = None
+    total_tax_debts: Optional[float] = None
+    total_liabilities: Optional[float] = None
+    total_production_costs: Optional[float] = None
+    total_depreciation_and_write_downs: Optional[float] = None
+    total_interest_and_other_financial_charges: Optional[float] = None
+    net_profit_loss_for_the_year: Optional[float] = None
+    other_current_liabilities: Optional[float] = None
+    net_invested_capital: Optional[float] = None
+    shareholders_equity: Optional[float] = None
+    financial_liabilities: Optional[float] = None
+    cash_and_cash_equivalents: Optional[float] = None
+    net_financial_position: Optional[float] = None
+    funds_from_operation: Optional[float] = None
+    cash_from_operation: Optional[float] = None
+    free_cash_flow_from_operation: Optional[float] = None
+    free_cash_flow_to_equity: Optional[float] = None
+    free_cash_flow: Optional[float] = None
+    year_over_year_revenue: Optional[float] = None
+    ebit_perc: Optional[float] = None
+    adjusted_ebitda_perc: Optional[float] = None
+    adjusted_ebit_perc: Optional[float] = None
+    net_income_perc: Optional[float] = None
+    return_on_capital_employed_roce_perc: Optional[float] = None
+    nfp_over_ebitda: Optional[float] = None
+    nfp_over_djusted_ebitda: Optional[float] = None
+    gross_debt_over_shareholders_equity: Optional[float] = None
+    sales_revenues_and_performance: Optional[float] = None
+    costs_of_raw_materials_subsidiary_and_goods: Optional[float] = None
+    financial_score_perc: Optional[float] = None
+    outlook: Optional[str] = None
+    hykee_score_perc: Optional[float] = None
