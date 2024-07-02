@@ -53,59 +53,60 @@ Segui le seguenti regole:
 Ecco degli esempi:
 MONTELLO SPA 
 Bilancio:
-	- companyName: MONTELLO S.P.A.
-	- Revenue: 273.630236
-	- Production value: 345284453.0
-	- Raw Materials: -54004461.0
-	- Services: -188163162.0
-	- Personnel: -16508268.0
-	- Other Operating Expenses: -11356298.0
-	- EBITDA: 0.102927177510884
-	- EBITDA %: 0.21794281018496944
-	- Depreciation & Amortization: 20656877.0
-	- EBIT: 0.102927177510884
-	- EBT: 0.44880338365421496
-	- Inventories: 16071225.0
-	- Taxes: -9441232.0
-	- Net Income: 43463646.217942804
-	- Tangible Assets: 144213332.0
-	- Financial Assets: 60056906.0
-	- Intangible Assets: 6841021.0
-	- Fixed Assets: 211111259.0
-	- Other Current Assets: 52593898.0
-	- Total Assets: 427150645.0
-	- Total debts to social security institutions: 866723.0
-	- Total tax debts: 10491684.0
-	- Total Liabilities: 427150645.0
-	- Total Production Costs: 290689066.0
-	- Total depreciation and write-downs: 20656877.0
-	- Total interest and other financial charges: 1667153.0
-	- Net Profit (Loss) for the Year: 43463646.0
-	- Other Current Liabilities: -39820966.0
+	- Partita IVA: 01078620166
+	- Nome Azienda: MONTELLO S.P.A.
+	- Ricavi: 273630236.0
+	- Valore della Produzione: 345284453.0
+	- Materie Prime: -54004461.0
+	- Servizi: -188163162.0
+	- Personale: -16508268.0
+	- Oneri diversi di gestione: -11356298.0
+	- EBITDA: 75252264.0
+	- EBITDA %: 21.8
+	- Ammortamenti, Acc. & Sval.: -20656877.0
+	- EBIT: 54595387.2
+	- EBT: 52904878.2
+	- Rimanenze: 16071225.0
+	- Imposte: -9441232.0
+	- Risultato d'esercizio: 43463646.2
+	- Imm. Materiali: 144213332.0
+	- Imm. Finanziarie: 60056906.0
+	- Imm. Immateriali: 6841021.0
+	- Attivo Fisso: 211111259.0
+	- Altri Crediti: 52593898.0
+	- Totale Attivo: 427150645.0
+	- Totale debiti verso istituti di previdenza: 866723.0
+	- Totale debiti tributari: 10491684.0
+	- Totale Passivo: 427150645.0
+	- Totale costi della produzione: 290689066.0
+	- Totale ammortamenti e svalutazioni: 20656877.0
+	- Totale interessi e altri oneri finanziari: 1667153.0
+	- Utile (perdite) dell'esercizio: 43463646.0
+	- Altri Debiti: -39820966.0
 	- Net Invested Capital (NIC): 243154702.0
-	- Shareholders Equity: 220429174.0
-	- Financial Liabilities: 104232265.0
-	- Cash and Cash Equivalents: 81506737.0
+	- Patrimonio Netto: 220429174.0
+	- Debiti Finanziari: 104232265.0
+	- Disponibilità Liquide: -81506737.0
 	- Net Financial Position (NFP): 22725528.0
-	- Funds from Operation (FFO): 65563536.217942804
-	- Cash From Operation (CFO): 71624385.2179428
-	- Free Cash Flow from Operation (FCFO): 24358888.217942804
-	- Free Cash Flow to Equity (FCFE): 22915875.217942804
-	- Free Cash Flow (∆ Cash and Cash Equivalents): 17734726.0
-	- Year over Year Revenue %: 0.23509854083228965
-	- EBIT %: 0.1581171313784661
-	- Adjusted EBITDA %: 0.0805774877890322
-	- Adjusted EBIT %: 0.005085549098455626
-	- Net Income %: 0.12587779681450878
-	- Return on Capital Employed (ROCE) %: 0.17064236860053206
-	- NFP / EBITDA: 0.3019912862688091
-	- NFP / Adjusted EBITDA: 1.030709251635388
-	- Gross Debt / Shareholders Equity: 0.4728605706248303
-	- 1) Sales Revenues and Performance: 273630236.0
-	- 6) Costs of raw materials, subsidiary materials, and goods consumed: 55287937.0
+	- Funds from Operation (FFO): 65563536.2
+	- Cash From Operation (CFO): 71624385.2
+	- Free Cash Flow from Operation (FCFO): 24358888.2
+	- Free Cash Flow to Equity (FCFE): 22915875.2
+	- Free Cash Flow (∆ Disponibilità Liquide): 17734726.0
+	- Year over Year Ricavi %: 23.5
+	- EBIT %: 15.8
+	- EBITDA Adj. %: 8.1
+	- EBIT Adj. %: 0.5
+	- Risultato d'esercizio %: 12.6
+	- ROCE %: 17.1
+	- PFN / EBITDA: 0.3
+	- PFN / EBITDA Adj.: 1.0
+	- Debito Lordo / Patrimonio Netto: 0.5
+	- Ricavi delle vendite e delle prestazioni: 273630236.0
+	- Costi per materie prime, sussidiarie, di consumo e di merci: 55287937.0
 	- Financial Score %: 86.9
 	- Outlook: POSITIVE
-	- HYKEE score %: 60.8
+	- HYKEE Score %: 60.8
 Analisi Aziendale:
 	Dall’analisi del bilancio riclassificato si evidenziano le principali performance economico-finanziarie: 
 	    - Ricavi dell’ultimo periodo in crescita del 23% rispetto al periodo precedente (€273mln vs €221mln nel 2021)
@@ -123,59 +124,60 @@ Analisi Aziendale:
 
 GOLDEN GROUP SPA
 Bilancio:
-	- companyName: GOLDEN GROUP S.P.A.
-	- Revenue: 30.085887
-	- Production value: 30807549.0
-	- Raw Materials: -220236.0
-	- Services: -12065342.0
-	- Personnel: -9755085.0
-	- Other Operating Expenses: -485866.0
-	- EBITDA: 0.2607927882595531
-	- EBITDA %: 0.2687984039236617
-	- Depreciation & Amortization: 1088329.0
-	- EBIT: 0.2607927882595531
-	- EBT: 39431.08959946813
-	- Inventories: 0.0
-	- Taxes: -2194498.0
-	- Net Income: 5150967.268798404
-	- Tangible Assets: 209185.0
-	- Financial Assets: 42284.0
-	- Intangible Assets: 2213600.0
-	- Fixed Assets: 2465069.0
-	- Other Current Assets: 1541843.0
-	- Total Assets: 24047117.0
-	- Total debts to social security institutions: 641780.0
-	- Total tax debts: 803656.0
-	- Total Liabilities: 24047117.0
-	- Total Production Costs: 23614858.0
-	- Total depreciation and write-downs: 1088329.0
-	- Total interest and other financial charges: 124215.0
-	- Net Profit (Loss) for the Year: 5150967.0
-	- Other Current Liabilities: -9916729.0
+	- Partita IVA: 03383331208
+	- Nome Azienda: GOLDEN GROUP S.P.A.
+	- Ricavi: 30085887.0
+	- Valore della Produzione: 30807549.0
+	- Materie Prime: -220236.0
+	- Servizi: -12065342.0
+	- Personale: -9755085.0
+	- Oneri diversi di gestione: -485866.0
+	- EBITDA: 8281020.0
+	- EBITDA %: 26.9
+	- Ammortamenti, Acc. & Sval.: -1088329.0
+	- EBIT: 7192691.3
+	- EBT: 7345465.3
+	- Rimanenze: 0.0
+	- Imposte: -2194498.0
+	- Risultato d'esercizio: 5150967.3
+	- Imm. Materiali: 209185.0
+	- Imm. Finanziarie: 42284.0
+	- Imm. Immateriali: 2213600.0
+	- Attivo Fisso: 2465069.0
+	- Altri Crediti: 1541843.0
+	- Totale Attivo: 24047117.0
+	- Totale debiti verso istituti di previdenza: 641780.0
+	- Totale debiti tributari: 803656.0
+	- Totale Passivo: 24047117.0
+	- Totale costi della produzione: 23614858.0
+	- Totale ammortamenti e svalutazioni: 1088329.0
+	- Totale interessi e altri oneri finanziari: 124215.0
+	- Utile (perdite) dell'esercizio: 5150967.0
+	- Altri Debiti: -9916729.0
 	- Net Invested Capital (NIC): 4044862.0
-	- Shareholders Equity: 10548773.0
-	- Financial Liabilities: 3.0
-	- Cash and Cash Equivalents: 322732.0
+	- Patrimonio Netto: 10548773.0
+	- Debiti Finanziari: 3.0
+	- Disponibilità Liquide: -322732.0
 	- Net Financial Position (NFP): -6503911.0
-	- Funds from Operation (FFO): 6086522.268798404
-	- Cash From Operation (CFO): 1170972.2687984044
-	- Free Cash Flow from Operation (FCFO): 118293.26879840437
-	- Free Cash Flow to Equity (FCFE): 271067.2687984044
-	- Free Cash Flow (∆ Cash and Cash Equivalents): -2913036.0
-	- Year over Year Revenue %: 0.19442715815031675
-	- EBIT %: 0.23347171398797106
-	- Adjusted EBITDA %: 0.2674085693401694
-	- Adjusted EBIT %: 0.23123449875351856
-	- Net Income %: 0.167198217190157
-	- Return on Capital Employed (ROCE) %: 1.3514541075287088
-	- NFP / EBITDA: 555555.55
-	- NFP / Adjusted EBITDA: 555555.55
-	- Gross Debt / Shareholders Equity: 2.8439326545371675e-07
-	- 1) Sales Revenues and Performance: 30085887.0
-	- 6) Costs of raw materials, subsidiary materials, and goods consumed: 220236.0
+	- Funds from Operation (FFO): 6086522.3
+	- Cash From Operation (CFO): 1170972.3
+	- Free Cash Flow from Operation (FCFO): 118293.3
+	- Free Cash Flow to Equity (FCFE): 271067.3
+	- Free Cash Flow (∆ Disponibilità Liquide): -2913036.0
+	- Year over Year Ricavi %: 19.4
+	- EBIT %: 23.3
+	- EBITDA Adj. %: 26.7
+	- EBIT Adj. %: 23.1
+	- Risultato d'esercizio %: 16.7
+	- ROCE %: 135.1
+	- PFN / EBITDA: 555555.6
+	- PFN / EBITDA Adj.: 555555.6
+	- Debito Lordo / Patrimonio Netto: 0.0
+	- Ricavi delle vendite e delle prestazioni: 30085887.0
+	- Costi per materie prime, sussidiarie, di consumo e di merci: 220236.0
 	- Financial Score %: 86.6
 	- Outlook: POSITIVE
-	- HYKEE score %: 60.6
+	- HYKEE Score %: 60.6
 Analisi Aziendale:
 	Dall’analisi del bilancio classificato si evidenziano le principali performance economico-finanziarie: 
 	    - Ricavi dell’ultimo periodo in crescita del 23% rispetto al periodo precedente (€30.8mln vs €25.8mln nel 2021) 

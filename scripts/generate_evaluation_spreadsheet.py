@@ -254,7 +254,7 @@ def main():
 
         if connection.is_connected():
             cursor = connection.cursor()
-            batch_generate_db("claude-3-haiku-20240307", formatted_balances[:37], "claude-3-haiku-20240307", connection, cursor, 0)
+            batch_generate_db("llama3", formatted_balances[:21], "llama3-8B", connection, cursor, 0)
             
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")

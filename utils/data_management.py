@@ -93,11 +93,10 @@ def translate(balance_json: dict) -> dict:
         translations = json.load(f)
     translated_json = balance_json.copy()
     for voice in balance_json:
-      key = voice
-      std_voice = standardize_voice_name(voice)
-      if std_voice in translations:
-        key = translations[std_voice]
-      translated_json[key] = translated_json.pop(voice)
+        key = voice
+        if voice in translations:
+            key = translations[voice]
+        translated_json[key] = translated_json.pop(voice)
     return translated_json
 
 def balance_json_to_text(data: dict) -> str:
@@ -198,6 +197,4 @@ def get_context_from_request(request: dict) -> dict:
     Returns:
         dict: The extracted data in JSON format.
     """
-    request['balance'] = translate(request['balance'])
-    request['score'] = translate(request['score'])
-    return extract_desired_data(request, REDUCED_DATA_KEYS)
+    return translate(request)
