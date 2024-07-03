@@ -1,8 +1,27 @@
-MODEL = "command-r"
-INFERENCE_TYPE = "few_shot_with_balance" # "zero_shot", "few_shot_with_balance" or "few_shot_without_balance"
+import os
+
+# check if the environment variables are set
+if "MODEL" not in os.environ:
+	MODEL = "claude-3-haiku-20240307"
+else:
+	MODEL = os.environ["MODEL"]
+
+if "INFERENCE_TYPE" not in os.environ:
+	INFERENCE_TYPE = "few_shot_without_balance"
+else:
+	INFERENCE_TYPE = os.environ["INFERENCE_TYPE"]
+ 
+if "OPENAI_API_KEY" not in os.environ:
+    raise ValueError("OPENAI_API_KEY is not set")
+
+if "ANTHROPIC_API_KEY" not in os.environ:
+	raise ValueError("ANTHROPIC_API_KEY is not set")
+
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
+
+INFERENCE_TYPE = "few_shot_without_balance" # "zero_shot", "few_shot_with_balance" or "few_shot_without_balance"
 MODELFILE = f"ollama/{MODEL}/{INFERENCE_TYPE}_modelfile"
-OPENAI_API_KEY = "sk-proj-GakwxTJNiTBDhZVS3jmWT3BlbkFJVkib4ycZd0lW65mLkoA5"
-ANTHROPIC_API_KEY = "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"
 SYSTEM_FEW_SHOT_WITHOUT_BALANCE = """
 Sei un analista finanziario. Rispondi come negli esempi in italiano.
 Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:

@@ -6,9 +6,9 @@ import sys
 current_dir = os.path.dirname(__file__)
 sys.path.insert(1, current_dir + "/../")
 
-from utils import data_management as dm
-from utils import llm_inference as li
-import config
+from app.utils import data_management as dm
+from app.utils import llm_inference as li
+import app.config as config
 import json
 import ast
 
@@ -47,7 +47,7 @@ def batch_format_balances(balances):
 
 def get_balances():
   current_dir = os.path.dirname(__file__)
-  file_path = os.path.join(current_dir, "../files/evaluation_balances.txt")
+  file_path = os.path.join(current_dir, "../app/files/evaluation_balances.txt")
   if os.path.exists(file_path):
     input_file = 'files/evaluation_balances.txt'
     with open(input_file, 'r') as infile:
@@ -55,7 +55,7 @@ def get_balances():
     return ast.literal_eval(data)
 
   current_dir = os.path.dirname(__file__)
-  file_path = os.path.join(current_dir, "../files/company_vats.txt")
+  file_path = os.path.join(current_dir, "../app/files/company_vats.txt")
   with open(file_path) as f:
       vats = f.read()
 
@@ -79,7 +79,7 @@ def get_balances():
   formatted_balances = batch_format_balances(balances)
 
   current_dir = os.path.dirname(__file__)
-  file_path = os.path.join(current_dir, "../files/evaluation_balances.txt")
+  file_path = os.path.join(current_dir, "../app/files/evaluation_balances.txt")
   with open(file_path, "w") as f:
     json.dump(formatted_balances, f)
 
@@ -254,7 +254,7 @@ def main():
 
         if connection.is_connected():
             cursor = connection.cursor()
-            batch_generate_db("llama3", formatted_balances[:21], "llama3-8B", connection, cursor, 0)
+            batch_generate_db("command-r", formatted_balances[:21], "command-r", connection, cursor, 0)
             
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")
