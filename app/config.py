@@ -5,7 +5,7 @@ load_dotenv()
 
 # check if the environment variables are set
 if "MODEL" not in os.environ:
-	MODEL = "claude-3-haiku-20240307"
+	MODEL = "llama3"
 else:
 	MODEL = os.environ["MODEL"]
 
@@ -23,7 +23,6 @@ if "ANTHROPIC_API_KEY" not in os.environ:
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 
-INFERENCE_TYPE = "few_shot_without_balance" # "zero_shot", "few_shot_with_balance" or "few_shot_without_balance"
 MODELFILE = f"ollama/{MODEL}/{INFERENCE_TYPE}_modelfile"
 SYSTEM_FEW_SHOT_WITHOUT_BALANCE = """
 Sei un analista finanziario. Rispondi come negli esempi in italiano.
