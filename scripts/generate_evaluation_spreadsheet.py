@@ -49,8 +49,7 @@ def get_balances():
   current_dir = os.path.dirname(__file__)
   file_path = os.path.join(current_dir, "../app/files/evaluation_balances.txt")
   if os.path.exists(file_path):
-    input_file = 'files/evaluation_balances.txt'
-    with open(input_file, 'r') as infile:
+    with open(file_path, 'r') as infile:
         data = infile.read()
     return ast.literal_eval(data)
 
@@ -254,7 +253,7 @@ def main():
 
         if connection.is_connected():
             cursor = connection.cursor()
-            batch_generate_db("command-r", formatted_balances[:21], "command-r", connection, cursor, 0)
+            batch_generate_db("gpt-3.5-turbo-0125", formatted_balances[:21], "gpt-3.5-turbo-0125", connection, cursor, 0)
             
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")

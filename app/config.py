@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # check if the environment variables are set
 if "MODEL" not in os.environ:
