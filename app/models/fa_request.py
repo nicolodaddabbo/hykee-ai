@@ -56,3 +56,7 @@ class FARequest(BaseModel):
     financial_score_perc: Optional[float] = None
     outlook: Optional[str] = None
     hykee_score_perc: Optional[float] = None
+    max_reference: Optional[float] = None
+    cash_reference: Optional[float] = None
+    pos_reference: Optional[float] = None
+    neg_reference: Optional[float] = None

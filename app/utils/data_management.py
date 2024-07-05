@@ -94,9 +94,21 @@ def translate(balance_json: dict) -> dict:
     translated_json = balance_json.copy()
     for voice in balance_json:
         key = voice
+        if translated_json[voice] == translated_json['max_reference']:
+            translated_json[voice] = 'MAX'
+        if translated_json[voice] == translated_json['cash_reference']:
+            translated_json[voice] = 'CASH'
+        if translated_json[voice] == translated_json['pos_reference']:
+            translated_json[voice] = 'POS'
+        if translated_json[voice] == translated_json['neg_reference']:
+            translated_json[voice] = 'NEG'
         if voice in translations:
             key = translations[voice]
         translated_json[key] = translated_json.pop(voice)
+    translated_json.pop('max_reference')
+    translated_json.pop('cash_reference')
+    translated_json.pop('pos_reference')
+    translated_json.pop('neg_reference')
     return translated_json
 
 def balance_json_to_text(data: dict) -> str:
