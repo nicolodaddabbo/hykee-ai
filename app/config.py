@@ -47,6 +47,17 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
       - Se il valore è positivo, l’azienda impiega liquidità perché ha crediti commerciali e/o rimanenze che eccedono i debiti commerciali. In altre parole, l’azienda non riesce, tramite la dilazione di pagamento verso fornitori a compensare il ritardo negli incassi da clienti.
       - Se il valore è negativo, l’azienda finanzia il proprio magazzino e l’incasso dei crediti con i propri fornitori; ovvero tipicamente con tempi di pagamento delle fatture fornitori molto lunghi.
 
+  - DSO e DPO
+	Il calcolo dei giorni di pagamento fornitori (DPO) e incasso clienti (DSO) è particolarmente importante per capire se qualcosa nella gestione commerciale o amministrativo contabile non sta funzionando correttamente.
+	DSO e DPO particolarmente elevati sono sintomo di un malfunzionamento complessivo nel business model, negli incentivi commerciali, nel ciclo amministrativo. Il calcolo è il seguente: 
+		DSO = Crediti Commerciali / Ricavi x 365 
+		DPO = Debiti Commerciali / (Costi per servizi + costi per materie prime + oneri diversi di gestione + godimento beni di terzi) x 365 
+	L’unità di misura è espressa in giorni. 
+	Per esempio:
+	DSO = 65 significa che l’azienda mediamente incassa le proprie fatture a 65 giorni 
+	DPO = 70 significa che l’azienda mediamente paga i propri fornitori a 70 giorni 
+	Interpretazione: tempi superiori ai 60 giorni devono destare preoccupazione e incentivare un’analisi attenta delle dinamiche di incasso e pagamento. 
+ 
   - HYKEE Score
     L'Hykee Score esprime la valutazione complessiva dell'azienda correlando analisi quantitative ad analisi qualitative. Le prime rappresentate dal Financial Rating esprimono la forza economico-finanziaria dell'azienda, le seconde indagano la solidità del business model e la capacità di competere sul mercato con agilità, velocità di innovazione e attitudine alla crescita.
 
@@ -138,6 +149,17 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
     Interpretazioni
       - Se il valore è positivo, l’azienda impiega liquidità perché ha crediti commerciali e/o rimanenze che eccedono i debiti commerciali. In altre parole, l’azienda non riesce, tramite la dilazione di pagamento verso fornitori a compensare il ritardo negli incassi da clienti.
       - Se il valore è negativo, l’azienda finanzia il proprio magazzino e l’incasso dei crediti con i propri fornitori; ovvero tipicamente con tempi di pagamento delle fatture fornitori molto lunghi.
+
+  - DSO e DPO
+	Il calcolo dei giorni di pagamento fornitori (DPO) e incasso clienti (DSO) è particolarmente importante per capire se qualcosa nella gestione commerciale o amministrativo contabile non sta funzionando correttamente.
+	DSO e DPO particolarmente elevati sono sintomo di un malfunzionamento complessivo nel business model, negli incentivi commerciali, nel ciclo amministrativo. Il calcolo è il seguente: 
+		DSO = Crediti Commerciali / Ricavi x 365 
+		DPO = Debiti Commerciali / (Costi per servizi + costi per materie prime + oneri diversi di gestione + godimento beni di terzi) x 365 
+	L’unità di misura è espressa in giorni. 
+	Per esempio:
+	DSO = 65 significa che l’azienda mediamente incassa le proprie fatture a 65 giorni 
+	DPO = 70 significa che l’azienda mediamente paga i propri fornitori a 70 giorni 
+	Interpretazione: tempi superiori ai 60 giorni devono destare preoccupazione e incentivare un’analisi attenta delle dinamiche di incasso e pagamento. 
 
   - HYKEE Score
     L'Hykee Score esprime la valutazione complessiva dell'azienda correlando analisi quantitative ad analisi qualitative. Le prime rappresentate dal Financial Rating esprimono la forza economico-finanziaria dell'azienda, le seconde indagano la solidità del business model e la capacità di competere sul mercato con agilità, velocità di innovazione e attitudine alla crescita.
