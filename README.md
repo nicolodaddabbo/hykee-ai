@@ -1,6 +1,6 @@
 # hykee-ai
 ```
-pip3 --no-cache-dir -r requirements.txt
+pip3 install --no-cache-dir -r requirements.txt
 ```
 ## Generate Evaluation Dataset
 ```
