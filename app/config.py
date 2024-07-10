@@ -5,12 +5,12 @@ load_dotenv()
 
 # check if the environment variables are set
 if "MODEL" not in os.environ:
-	MODEL = "llama3"
+	MODEL = "claude-3-haiku-20240307"
 else:
 	MODEL = os.environ["MODEL"]
 
 if "INFERENCE_TYPE" not in os.environ:
-	INFERENCE_TYPE = "few_shot_without_balance"
+	INFERENCE_TYPE = "few_shot_with_balance"
 else:
 	INFERENCE_TYPE = os.environ["INFERENCE_TYPE"]
  
