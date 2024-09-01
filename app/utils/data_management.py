@@ -54,7 +54,9 @@ REDUCED_DATA_KEYS = [
     '6) Costs of raw materials, subsidiary materials, and goods consumed',
     'Financial Score %',
     'Outlook',
-    'HYKEE score %'
+    'HYKEE score %',
+    'DSO',
+    'DPO'
 ]
 
 def standardize_voice_name(name: str) -> str:
@@ -104,7 +106,10 @@ def translate(balance_json: dict) -> dict:
             translated_json[voice] = 'NEG'
         if voice in translations:
             key = translations[voice]
-        translated_json[key] = translated_json.pop(voice)
+        if translated_json[voice] == -0.0:
+           translated_json.pop(voice)
+        else: 
+            translated_json[key] = translated_json.pop(voice)
     translated_json.pop('max_reference')
     translated_json.pop('cash_reference')
     translated_json.pop('pos_reference')

@@ -60,3 +60,5 @@ class FARequest(BaseModel):
     cash_reference: Optional[float] = None
     pos_reference: Optional[float] = None
     neg_reference: Optional[float] = None
+    dso: Optional[float] = None
+    dpo: Optional[float] = None

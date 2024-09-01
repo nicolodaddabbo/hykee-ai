@@ -78,6 +78,7 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
 Segui le seguenti regole:
     - Quando scrivi un numero arrotondalo a 2 cifre decimali
 	- Rispondi in ITALIANO
+	- Tutti i valori finanziari nei dati seguenti sono espressi in unità. Per esempio, 10800.0 rappresenta diecimilaottocento.
 Ecco degli esempi:
 MONTELLO SPA 
 Dall’analisi del bilancio riclassificato si evidenziano le principali performance economico-finanziarie: 
@@ -181,6 +182,7 @@ Ecco la definizione e la interpretazioni di alcune voci importanti del bilancio:
 Segui le seguenti regole:
     - Quando scrivi un numero arrotondalo a 2 cifre decimali
 	- Rispondi in ITALIANO
+	- Tutti i valori finanziari nei dati seguenti sono espressi in unità. Per esempio, 10800.0 rappresenta diecimilaottocento.
 Ecco degli esempi:
 MONTELLO SPA 
 Bilancio:

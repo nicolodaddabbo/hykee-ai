@@ -1,0 +1,62 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - docker info
+
+stages:
+  - build
+  - release
+  - deploy
+
+build:
+  stage: build
+  script:
+    # Create the .env file from GitLab CI secret variables
+    - echo "MODEL=$MODEL" > app/.env
+    - echo "INFERENCE_TYPE=$INFERENCE_TYPE" >> app/.env
+    - echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> app/.env
+    - echo "ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY" >> app/.env
+    - echo "HYKEE_AI_API_KEY=$HYKEE_AI_API_KEY" >> app/.env
+
+    # Build the Docker image
+    - docker build -t $CI_REGISTRY_IMAGE app/
+    - docker push $CI_REGISTRY_IMAGE
+  artifacts:
+    paths:
+      - app/.env
+
+release:
+  tags:
+    - hykee-backend-ec2-runner
+  stage: release
+  dependencies:
+    - build
+  script:
+    - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 262999013195.dkr.ecr.eu-west-1.amazonaws.com
+    - docker pull $CI_REGISTRY_IMAGE
+    - docker tag $CI_REGISTRY_IMAGE 262999013195.dkr.ecr.eu-west-1.amazonaws.com/hykee-ai:latest
+    - docker push 262999013195.dkr.ecr.eu-west-1.amazonaws.com/hykee-ai:latest
+
+deploy:
+  tags:
+    - hykee-backend-ec2-runner
+  stage: deploy
+  dependencies:
+    - release
+  script:
+    - CONTAINER_ID=$(docker ps -aqf "name=hykee-ai")
+    - if [ -n "$CONTAINER_ID" ]; then
+        docker stop "$CONTAINER_ID";
+        docker rm "$CONTAINER_ID";
+      fi
+    - docker run -d -p 8000:8000 --name hykee-ai 262999013195.dkr.ecr.eu-west-1.amazonaws.com/hykee-ai:latest
+    - docker image prune -f
+    - docker container prune -f
+

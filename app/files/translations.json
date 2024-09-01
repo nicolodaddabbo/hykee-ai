@@ -52,5 +52,7 @@
     "costs_of_raw_materials_subsidiary_and_goods": "Costi per materie prime, sussidiarie, di consumo e di merci",
     "financial_score_perc": "Financial Score %",
     "outlook": "Outlook",
-    "hykee_score_perc": "HYKEE Score %"
+    "hykee_score_perc": "HYKEE Score %",
+    "dpo": "DPO",
+    "dso": "DSO"
 }
